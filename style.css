@@ -1,0 +1,41 @@
+#map {
+    height: 500px;
+    background-color: #ccc;
+  }
+
+  #map::before {
+    content: "LOADING";
+    font-size: 3em;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    margin-top: 3em;
+  }
+
+  .leaflet-popup-content-wrapper {
+    width: 100%;
+  }
+
+  form {
+    text-align: center;
+    background-color: #4CAF50; green
+    border: 2px solid black;
+    color: white;
+    padding: 15px 32px;
+    text-decoration: none;
+    
+    font-size: 25px;
+  }
+
+  button#submit {
+    font-size: 25px;
+    border-radius: 25px;
+    
+  }
+
+  select#location-select {
+    font-size: 25px;
+    border-radius: 25px;
+  }
+
+  

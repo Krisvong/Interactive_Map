@@ -1,0 +1,28 @@
+-- CREATE an object called "myMap" with properties:
+--   - coordinates (empty array)
+--   - businesses (empty array)
+--   - map (empty object)
+--   - markers (empty object)
+--   - a method called "buildMap" that:
+--     - SETS the "map" property to a new map centered on the "coordinates" property with a zoom level of 11
+--     - ADDS a tile layer using OpenStreetMap to the "map" property
+--     - ADDS a marker to the "map" property at the "coordinates" location
+
+-- DEFINE a function called "getCoords" that:
+--   - RETRIEVES the user's current location
+--   - RETURNS the latitude and longitude as an array
+
+-- DEFINE a function called "getFoursquare" that takes in a "business" parameter
+--   - MAKES a GET request to the Foursquare Places API to search for the "business" within a certain radius from the user's location
+--   - RETURNS an array of businesses as a result
+
+-- DEFINE a function called "processBusinesses" that takes in a "data" parameter
+--   - PROCESSES the "data" by extracting the name, latitude, and longitude for each business
+--   - RETURNS an array of objects containing this information
+
+-- ON window load:
+--   - CALL the "getCoords" function and SET the "coordinates" property of "myMap" to the returned value
+--   - CALL the "buildMap" method to create the map
+
+-- ADD an event listener to the submit button to listen for a click event
+--   - WHEN the event occurs, LOG the value of the "business" input field to the console
