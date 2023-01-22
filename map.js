@@ -29,8 +29,8 @@ const myMap = {
     addMarkers() {
         for (var i = 0; i < this.businesses.length; i++) {
             this.markers = L.marker( [
-                this.business[i].lat,
-                this.business[i].long,
+                this.businesses[i].lat,
+                this.businesses[i].long,
             ])
             .bindPopup(`<p1>${this.businesses[i].name}</p1>`)
             .addTo(this.map)
@@ -47,18 +47,18 @@ const myMap = {
         }
 
         //get foursquare businesses
-        async function fourSquare(business) {
+        async function getFourSquare(business) {
             const options = {
                 method: 'GET',
                 headers: {
-                    Accept: 'application/json',
-                    Authorization: 'fsq3UVrk1POEDX9+b3ed6q1nK9ymiccdlVLQdliSRr5mdnM='
+                Accept: 'application/json',
+                Authorization: 'fsq3UVrk1POEDX9+b3ed6q1nK9ymiccdlVLQdliSRr5mdnM='
                 }
             }
             let limit = 5
             let lon = myMap.coordinates[1]
             let lat = myMap.coordinates[0]
-            let response = await fetch(`https://api.foursquare.com/v3/places/search?&query=${business}&limit=${limit}&ll=${lat}%2C${lon}`, options)
+            let response = await fetch(`https://cors-anywhere.herokuapp.com/https://api.foursquare.com/v3/places/search?&query=${business}&limit=${limit}&ll=${lat}%2C${lon}`, options)
             let data = await response.text()
             let parsedData = JSON.parse(data)
             let businesses = parsedData.results
@@ -66,21 +66,6 @@ const myMap = {
             return businesses
         }
         
-        function mapBusinesses(object) {
-            let businesses = object.map((element) => {
-                let location = {
-                    name: element.name,
-                    icon: element.icon,
-                    lat: element.geocodes.main.latitude,
-                    long: element.geocodes.main.longitude,
-                    address: element.location.address
-                };
-                console.log(location)
-                return location
-            })
-            return businesses
-        }
-
         //process foursquare array
         function processBusinesses(data) {
             let businesses = data.map((element) => {
@@ -98,7 +83,6 @@ const myMap = {
         //window load
         window.onload = async () => {
             const coords = await getCoords()
-            console.log(coords)
             myMap.coordinates = coords
             myMap.buildMap()
         }
@@ -107,17 +91,12 @@ const myMap = {
         document.getElementById('submit').addEventListener('click', async (event) => {
             event.preventDefault()
             let business = document.getElementById('business').value 
-            let data = await getFoursquare(business)
+            let data = await getFourSquare(business)
             myMap.businesses = processBusinesses(data)
             myMap.addMarkers()
         })
 
 
-    // const redPin = L.icon({
-    //     iconUrl: './assets/red-pin.png',
-    //     iconSize: [38, 38],
-    //     iconAnchor: [19, 38],
-    //     popupAnchor: [0, -38],
-    // })
+        
 
    

@@ -1,6 +1,7 @@
 #map {
     height: 500px;
     background-color: #ccc;
+    border: 2px solid black;
   }
 
   #map::before {
@@ -18,8 +19,8 @@
 
   form {
     text-align: center;
-    background-color: #4CAF50; green
-    border: 2px solid black;
+    background-color: #4CAF50; 
+    border: 1px solid black;
     color: white;
     padding: 15px 32px;
     text-decoration: none;
